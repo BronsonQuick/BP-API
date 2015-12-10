@@ -16,7 +16,7 @@ class BP_REST_Activity_Controller {
 	 *
 	 * @return array
 	 */
-	public function get_item_schema(){
+	public function get_item_schema() {
 		$schema = array(
 			'$schema'    => 'http://json-schema.org/draft-04/schema#',
 			'title'      => 'activity',
@@ -83,5 +83,67 @@ class BP_REST_Activity_Controller {
 			),
 		);
 		return $schema;
+	}
+
+	/**
+	 * Get items
+	 * @param array $filter
+	 *
+	 * @return mixed
+	 */
+	public function get_items( $filter = array() ) {
+		$response = $this->get_activity( $filter['filter'] );
+		return (object) $response;
+	}
+
+	/**
+	 * @param $filter
+	 *
+	 * @return mixed|WP_Error|WP_REST_Response
+	 */
+	public function get_activity( $filter ) {
+
+		$args = $filter;
+
+		if ( bp_has_activities( $args ) ) {
+
+			while ( bp_activities() ) {
+
+				bp_the_activity();
+
+				$activity = array(
+					'avatar'	 		=> bp_core_fetch_avatar( array( 'html' => false, 'item_id' => bp_get_activity_id() ) ),
+					'action'	 		=> bp_get_activity_action(),
+					'content'	  		=> bp_get_activity_content_body(),
+					'activity_id'		=> bp_get_activity_id(),
+					'activity_username' => bp_core_get_username( bp_get_activity_user_id() ),
+					'user_id'	 		=> bp_get_activity_user_id(),
+					'comment_count'  	=> bp_activity_get_comment_count(),
+					'can_comment'	 	=> bp_activity_can_comment(),
+					'can_favorite'	  	=> bp_activity_can_favorite(),
+					'is_favorite'	 	=> bp_get_activity_is_favorite(),
+					'can_delete'  		=> bp_activity_user_can_delete()
+				);
+
+				$activity = apply_filters( 'bp_json_prepare_activity', $activity );
+
+				$activities[] =	 $activity;
+
+			}
+
+			$data = $activities;
+
+			$data = apply_filters( 'bp_json_prepare_activities', $data );
+
+		} else {
+			return new WP_Error( 'bp_json_activity', __( 'No Activity Found.', 'buddypress' ), array( 'status' => 200 ) );
+		}
+
+		$response = new WP_REST_Response();
+		$response->set_data( $data );
+		$response = rest_ensure_response( $response );
+
+		return (object) $response;
+
 	}
 }
