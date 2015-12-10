@@ -150,7 +150,7 @@ class BP_REST_Activity_Controller {
 					'can_delete'  		=> bp_activity_user_can_delete()
 				);
 
-				$activity = apply_filters( 'bp_json_prepare_activity', $activity );
+				$activity = apply_filters( 'bp_resy_prepare_activity', $activity );
 
 				$activities[] =	 $activity;
 
@@ -158,10 +158,10 @@ class BP_REST_Activity_Controller {
 
 			$data = $activities;
 
-			$data = apply_filters( 'bp_json_prepare_activities', $data );
+			$data = apply_filters( 'bp_rest_prepare_activities', $data );
 
 		} else {
-			return new WP_Error( 'bp_json_activity', __( 'No Activity Found.', 'buddypress' ), array( 'status' => 200 ) );
+			return new WP_Error( 'bp_rest_activity', __( 'No Activity Found.', 'buddypress' ), array( 'status' => 200 ) );
 		}
 
 		$response = new WP_REST_Response();
