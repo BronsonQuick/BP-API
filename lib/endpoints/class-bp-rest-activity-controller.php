@@ -9,6 +9,13 @@ class BP_REST_Activity_Controller {
 			),
 			'schema' => array( $this, 'get_item_schema' ),
 		) );
+		register_rest_route( 'bp/v1', '/activity/(?P<id>\d+)', array(
+			array(
+				'methods' => 'GET',
+				'callback' => array( $this, 'get_item' ),
+			),
+			'schema' => array( $this, 'get_item_schema' ),
+		) );
 	}
 
 	/**
@@ -83,6 +90,24 @@ class BP_REST_Activity_Controller {
 			),
 		);
 		return $schema;
+	}
+
+	/**
+	 * Get a single activity.
+	 * @param $request
+	 *
+	 * @return object|WP_Error
+	 */
+	public function get_item( $request ) {
+		$id = (int) $request['id'];
+
+		if ( empty( $id ) ) {
+			return new WP_Error( 'rest_post_invalid_id', __( 'Invalid activity id.' ), array( 'status' => 404 ) );
+		}
+
+		$response = $this->get_activity( array( 'in' => (int) $id ) );
+
+		return (object) $response;
 	}
 
 	/**
