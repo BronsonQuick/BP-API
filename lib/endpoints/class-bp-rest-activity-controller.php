@@ -102,7 +102,7 @@ class BP_REST_Activity_Controller {
 		$id = (int) $request['id'];
 
 		if ( empty( $id ) ) {
-			return new WP_Error( 'rest_post_invalid_id', __( 'Invalid activity id.' ), array( 'status' => 404 ) );
+			return new WP_Error( 'rest_activity_invalid_id', __( 'Invalid activity id.' ), array( 'status' => 404 ) );
 		}
 
 		$response = $this->get_activity( array( 'in' => (int) $id ) );
