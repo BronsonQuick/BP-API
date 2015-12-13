@@ -91,7 +91,7 @@ class BP_REST_Activity_Controller {
 					'context'     => array( 'view' ),
 				),
 				'is_favorite' => array(
-					'description' => __( 'A boolean value of whether the logged in user has favorited the activity.', 'bp-rest-api' ),
+					'description' => __( 'A boolean value of whether the logged in user has favourited the activity.', 'bp-rest-api' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view' ),
 				),
