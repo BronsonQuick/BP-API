@@ -114,7 +114,7 @@ class BP_REST_Activity_Controller {
 	 */
 	public function get_item( $request ) {
 
-		$id = (int) $request['id'];
+		$id = (int) absint( $request['id'] );
 
 		if ( empty( $id ) ) {
 			return new WP_Error( 'rest_activity_invalid_id', __( 'Invalid activity id.', 'bp-rest-api' ), array( 'status' => 404 ) );
