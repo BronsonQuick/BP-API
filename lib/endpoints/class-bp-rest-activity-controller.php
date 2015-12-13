@@ -71,7 +71,7 @@ class BP_REST_Activity_Controller {
 					'context'     => array( 'view' ),
 				),
 				'content' => array(
-					'description' => __( 'The content got the activity.', 'bp-rest-api' ),
+					'description' => __( 'The content of the activity.', 'bp-rest-api' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
 				),
