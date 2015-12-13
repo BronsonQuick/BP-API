@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Access Activity.
+ *
+ * Class BP_REST_Activity_Controller
+ */
 class BP_REST_Activity_Controller {
 
 	/**
@@ -41,57 +46,57 @@ class BP_REST_Activity_Controller {
 			 */
 			'properties' => array(
 				'activity_id' => array(
-					'description' => 'Unique identifier for the activity.',
+					'description' => __( 'Unique identifier for the activity.', 'bp-rest-api' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
 				),
 				'activity_username' => array(
-					'description' => 'Unique username for the activity',
+					'description' => __( 'Unique username for the activity', 'bp-rest-api' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
 				),
 				'user_id' => array(
-					'description' => 'Unique identifier for the user',
+					'description' => __( 'Unique identifier for the user', 'bp-rest-api' ),
 					'type'        => 'int',
 					'context'     => array( 'view' ),
 				),
 				'avatar' => array(
-					'description' => 'The Avatar URL',
+					'description' => __( 'The Avatar URL', 'bp-rest-api' ),
 					'type'        => 'uri',
 					'context'     => array( 'view' ),
 				),
 				'action' => array(
-					'description' => 'The action that took place in HTML format',
+					'description' => __( 'The action that took place in HTML format', 'bp-rest-api' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
 				),
 				'content' => array(
-					'description' => 'The content got the activity',
+					'description' => __( 'The content got the activity', 'bp-rest-api' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
 				),
 				'comment_count' => array(
-					'description' => 'The number of comments on the activity',
+					'description' => __( 'The number of comments on the activity', 'bp-rest-api' ),
 					'type'        => 'integer',
 					'context'     => array( 'view' ),
 				),
 				'can_comment' => array(
-					'description' => 'A boolean value of whether the logged in user can comment on the activity',
+					'description' => __( 'A boolean value of whether the logged in user can comment on the activity', 'bp-rest-api' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view' ),
 				),
 				'can_favorite' => array(
-					'description' => 'A boolean value of whether the logged in user can favorite the activity',
+					'description' => __( 'A boolean value of whether the logged in user can favorite the activity', 'bp-rest-api' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view' ),
 				),
 				'is_favorite' => array(
-					'description' => 'A boolean value of whether the logged in user has favorited the activity',
+					'description' => __( 'A boolean value of whether the logged in user has favorited the activity', 'bp-rest-api' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view' ),
 				),
 				'can_delete' => array(
-					'description' => 'A boolean value about whether the logged in user can delete the activity',
+					'description' => __( 'A boolean value about whether the logged in user can delete the activity', 'bp-rest-api' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view' ),
 				),
