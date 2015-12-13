@@ -4,7 +4,7 @@
 
 This plugin will work with WordPress 4.4 and up.
 
-Currently this plugin adds an activity schema and an activity to BuddyPress.
+Currently this plugin adds an activity schema and an activity endpoint to BuddyPress.
 
 Steps to view the schema:
 

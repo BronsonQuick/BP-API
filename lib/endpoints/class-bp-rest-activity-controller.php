@@ -1,7 +1,12 @@
 <?php
+
 class BP_REST_Activity_Controller {
 
+	/**
+	 * Add our two activity endpoints.
+	 */
 	public function register_routes() {
+
 		register_rest_route( 'bp/v1', '/activity', array(
 			array(
 				'methods' => 'GET',
@@ -9,6 +14,7 @@ class BP_REST_Activity_Controller {
 			),
 			'schema' => array( $this, 'get_item_schema' ),
 		) );
+
 		register_rest_route( 'bp/v1', '/activity/(?P<id>\d+)', array(
 			array(
 				'methods' => 'GET',
@@ -16,14 +22,16 @@ class BP_REST_Activity_Controller {
 			),
 			'schema' => array( $this, 'get_item_schema' ),
 		) );
+
 	}
 
 	/**
-	 * Get the activity schema conforming to JSON Schema
+	 * Get the activity schema conforming to JSON Schema.
 	 *
 	 * @return array
 	 */
 	public function get_item_schema() {
+
 		$schema = array(
 			'$schema'    => 'http://json-schema.org/draft-04/schema#',
 			'title'      => 'activity',
@@ -89,6 +97,7 @@ class BP_REST_Activity_Controller {
 				),
 			),
 		);
+
 		return $schema;
 	}
 
@@ -99,6 +108,7 @@ class BP_REST_Activity_Controller {
 	 * @return object|WP_Error
 	 */
 	public function get_item( $request ) {
+
 		$id = (int) $request['id'];
 
 		if ( empty( $id ) ) {
@@ -111,7 +121,7 @@ class BP_REST_Activity_Controller {
 	}
 
 	/**
-	 * Get items
+	 * Get items.
 	 * @param array $filter
 	 *
 	 * @return mixed
@@ -122,6 +132,7 @@ class BP_REST_Activity_Controller {
 	}
 
 	/**
+	 * Get the BuddyPress activity.
 	 * @param $filter
 	 *
 	 * @return mixed|WP_Error|WP_REST_Response
@@ -137,20 +148,20 @@ class BP_REST_Activity_Controller {
 				bp_the_activity();
 
 				$activity = array(
-					'avatar'	 		=> bp_core_fetch_avatar( array( 'html' => false, 'item_id' => bp_get_activity_id() ) ),
-					'action'	 		=> bp_get_activity_action(),
-					'content'	  		=> bp_get_activity_content_body(),
-					'activity_id'		=> bp_get_activity_id(),
+					'avatar'            => bp_core_fetch_avatar( array( 'html' => false, 'item_id' => bp_get_activity_id() ) ),
+					'action'            => bp_get_activity_action(),
+					'content'           => bp_get_activity_content_body(),
+					'activity_id'       => bp_get_activity_id(),
 					'activity_username' => bp_core_get_username( bp_get_activity_user_id() ),
-					'user_id'	 		=> bp_get_activity_user_id(),
-					'comment_count'  	=> bp_activity_get_comment_count(),
-					'can_comment'	 	=> bp_activity_can_comment(),
-					'can_favorite'	  	=> bp_activity_can_favorite(),
-					'is_favorite'	 	=> bp_get_activity_is_favorite(),
-					'can_delete'  		=> bp_activity_user_can_delete()
+					'user_id'           => bp_get_activity_user_id(),
+					'comment_count'     => bp_activity_get_comment_count(),
+					'can_comment'       => bp_activity_can_comment(),
+					'can_favorite'      => bp_activity_can_favorite(),
+					'is_favorite'       => bp_get_activity_is_favorite(),
+					'can_delete'        => bp_activity_user_can_delete(),
 				);
 
-				$activity = apply_filters( 'bp_resy_prepare_activity', $activity );
+				$activity = apply_filters( 'bp_rest_prepare_activity', $activity );
 
 				$activities[] =	 $activity;
 
@@ -161,7 +172,7 @@ class BP_REST_Activity_Controller {
 			$data = apply_filters( 'bp_rest_prepare_activities', $data );
 
 		} else {
-			return new WP_Error( 'bp_rest_activity', __( 'No Activity Found.', 'buddypress' ), array( 'status' => 200 ) );
+			return new WP_Error( 'bp_rest_activity', __( 'No Activity Found.', 'bp-rest-api' ), array( 'status' => 200 ) );
 		}
 
 		$response = new WP_REST_Response();
