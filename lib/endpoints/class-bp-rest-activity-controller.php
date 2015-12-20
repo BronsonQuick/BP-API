@@ -168,7 +168,7 @@ class BP_REST_Activity_Controller {
 
 				$activity = apply_filters( 'bp_rest_prepare_activity', $activity );
 
-				$activities[] =	 $activity;
+				$activities[] = $activity;
 
 			}
 
