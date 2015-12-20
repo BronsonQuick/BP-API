@@ -14,7 +14,7 @@ class BP_REST_Activity_Controller {
 
 		register_rest_route( 'bp/v1', '/activity', array(
 			array(
-				'methods' => 'GET',
+				'methods' => WP_REST_Server::READABLE,
 				'callback' => array( $this, 'get_items' ),
 			),
 			'schema' => array( $this, 'get_item_schema' ),
@@ -22,7 +22,7 @@ class BP_REST_Activity_Controller {
 
 		register_rest_route( 'bp/v1', '/activity/(?P<id>\d+)', array(
 			array(
-				'methods' => 'GET',
+				'methods' => WP_REST_Server::READABLE,
 				'callback' => array( $this, 'get_item' ),
 			),
 			'schema' => array( $this, 'get_item_schema' ),
