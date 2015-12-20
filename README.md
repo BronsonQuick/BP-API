@@ -1,5 +1,7 @@
 # A REST API for BuddyPress
 
+[![Build Status](https://travis-ci.org/BronsonQuick/BP-API.svg?branch=master)](https://travis-ci.org/BronsonQuick/BP-API)
+
 **This plugin is currently under development and is incomplete**
 
 This plugin will work with WordPress 4.4 and up.
