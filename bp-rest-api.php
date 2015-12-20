@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Register our new endpoints.
+ */
 function bp_rest_endpoints() {
 
 	// Check is BuddyPress is active.
