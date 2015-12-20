@@ -21,7 +21,7 @@ function bp_rest_endpoints() {
 	// Check is BuddyPress is active.
 	if ( class_exists( 'BuddyPress' ) ) {
 
-		// If the actvity component is loaded bring in the activity schema.
+		// If the activity component is loaded bring in the activity schema.
 		if ( bp_is_active( 'activity' ) ) {
 			/**
 			 * BP_REST_Activity_Controller class.
