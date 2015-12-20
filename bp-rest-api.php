@@ -27,7 +27,6 @@ function bp_rest_endpoints() {
 			$GLOBALS['bp_rest_activity_controller'] = $activity = new BP_REST_Activity_Controller();
 			$activity->register_routes();
 		}
-
 	}
 
 }
