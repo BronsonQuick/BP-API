@@ -20,6 +20,9 @@ function bp_rest_endpoints() {
 
 		// If the actvity component is loaded bring in the activity schema.
 		if ( bp_is_active( 'activity' ) ) {
+			/**
+			 * BP_REST_Activity_Controller class.
+			 */
 			include_once( __DIR__ . '/lib/endpoints/class-bp-rest-activity-controller.php' );
 			$GLOBALS['bp_rest_activity_controller'] = $activity = new BP_REST_Activity_Controller();
 			$activity->register_routes();
