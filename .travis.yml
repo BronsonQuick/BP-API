@@ -30,6 +30,7 @@ env:
     # Trunk (current version in development is 4.4)
     # @link https://github.com/WordPress/WordPress
     - WP_VERSION=master WP_MULTISITE=0
+    - WP_VERSION=master WP_MULTISITE=1
 
 matrix:
   fast_finish: true
